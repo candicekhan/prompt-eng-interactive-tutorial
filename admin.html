@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luma Library – Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ["Inter","ui-sans-serif","system-ui"] }, colors: { neon: { green: "#00FF85", cyan: "#00E5FF", magenta: "#FF2D95" } } } } }
+  </script>
+  <link rel="stylesheet" href="/workspace/styles.css" />
+</head>
+<body class="min-h-screen font-sans bg-[#0A0A0A]">
+  <div class="bg-orbs"></div>
+
+  <!-- Top Nav (shared) -->
+  <header class="fixed top-0 inset-x-0 z-40">
+    <div class="container-2xl px-4 py-3">
+      <div class="glass-panel glass-rounded flex items-center justify-between px-4 py-2">
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuBtn" class="md:hidden btn btn-ghost icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H16M4 18H20" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <a href="/workspace/index.html" class="flex items-center gap-2"><div class="w-8 h-8 rounded-xl glass-panel"></div><span class="text-white/90 text-lg font-semibold tracking-wide">Luma Library</span></a>
+        </div>
+        <div class="hidden md:flex items-center gap-3 flex-1 max-w-2xl mx-6">
+          <div class="relative flex-1">
+            <input class="w-full input-glow px-4 py-2.5 pl-10" placeholder="Search the library..." />
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9ca3af" stroke-width="1.5"/><path d="M20 20L17 17" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <a href="/workspace/upload.html" class="btn neon-green">Upload</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-ghost icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s7-4 7-10V6l-7-3-7 3v6c0 6 7 10 7 10Z" stroke="#cbd5e1" stroke-width="1.5"/></svg></button>
+          <a href="/workspace/my-library.html" class="hidden md:inline-flex btn btn-ghost">My Library</a>
+          <div class="w-9 h-9 rounded-xl glass-panel overflow-hidden"><img src="https://i.pravatar.cc/64?img=8" class="w-full h-full object-cover"/></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar (shared) -->
+  <aside id="sidebar" class="fixed z-30 inset-y-0 left-0 w-72 px-4 pt-24 pb-6 hidden md:block">
+    <nav class="glass-panel glass-rounded h-full p-3 flex flex-col">
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/index.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>Home</span></a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/browse.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>Browse</span></a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/upload.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>Upload</span></a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/my-library.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>My Library</span></a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/admin.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>Admin</span></a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/reader.html"><span class="w-6 h-6 rounded-md glass-panel"></span><span>Reader</span></a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="pt-24 md:pl-80 px-4">
+    <div class="container-2xl space-y-6">
+      <!-- Analytics Cards -->
+      <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div class="glass-panel glass-card p-4"><div class="text-white/60 text-sm">Total Items</div><div class="text-2xl font-bold">12,842</div></div>
+        <div class="glass-panel glass-card p-4"><div class="text-white/60 text-sm">New Uploads</div><div class="text-2xl font-bold">128</div></div>
+        <div class="glass-panel glass-card p-4"><div class="text-white/60 text-sm">Pending Reviews</div><div class="text-2xl font-bold">9</div></div>
+        <div class="glass-panel glass-card p-4"><div class="text-white/60 text-sm">Active Users</div><div class="text-2xl font-bold">4,213</div></div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Approvals -->
+        <div class="glass-panel glass-card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-white/90 font-semibold">Upload Approvals</h2>
+            <button class="btn neon-cyan">Approve All</button>
+          </div>
+          <div class="divide-y divide-white/10">
+            <div class="py-3 flex items-center justify-between">
+              <div>
+                <div class="text-white/80 font-medium">NeRF for Beginners</div>
+                <div class="text-white/60 text-sm">by @mlschool</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="btn btn-ghost">Reject</button>
+                <button class="btn neon-green">Approve</button>
+              </div>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div>
+                <div class="text-white/80 font-medium">Procedural Materials Pack</div>
+                <div class="text-white/60 text-sm">by @designhub</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="btn btn-ghost">Reject</button>
+                <button class="btn neon-green">Approve</button>
+              </div>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div>
+                <div class="text-white/80 font-medium">Realtime Ray Tracing</div>
+                <div class="text-white/60 text-sm">by @visionlab</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="btn btn-ghost">Reject</button>
+                <button class="btn neon-green">Approve</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="glass-panel glass-card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-white/90 font-semibold">Categories</h2>
+            <button class="btn neon-magenta">Add</button>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 glass-panel glass-rounded">
+              <div class="text-white/80">AI</div>
+              <div class="flex items-center gap-2"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost">Delete</button></div>
+            </div>
+            <div class="flex items-center justify-between p-3 glass-panel glass-rounded">
+              <div class="text-white/80">3D</div>
+              <div class="flex items-center gap-2"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost">Delete</button></div>
+            </div>
+            <div class="flex items-center justify-between p-3 glass-panel glass-rounded">
+              <div class="text-white/80">Design</div>
+              <div class="flex items-center gap-2"><button class="btn btn-ghost">Edit</button><button class="btn btn-ghost">Delete</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activity -->
+      <section class="glass-panel glass-card p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-white/90 font-semibold">Recent Activity</h2>
+          <button class="btn btn-ghost">Export</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="glass-panel glass-rounded p-3">
+            <div class="text-white/60 text-sm">Top Search</div>
+            <div class="text-white/90 font-semibold">"Gaussian Splatting"</div>
+          </div>
+          <div class="glass-panel glass-rounded p-3">
+            <div class="text-white/60 text-sm">Avg. Session</div>
+            <div class="text-white/90 font-semibold">8m 32s</div>
+          </div>
+          <div class="glass-panel glass-rounded p-3">
+            <div class="text-white/60 text-sm">Conversion</div>
+            <div class="text-white/90 font-semibold">3.9%</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    if (mobileBtn) mobileBtn.addEventListener('click', () => sidebar.classList.toggle('hidden'));
+  </script>
+</body>
+</html>

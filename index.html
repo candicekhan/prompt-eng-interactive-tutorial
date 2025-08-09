@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luma Library – Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
+          colors: { neon: { green: "#00FF85", cyan: "#00E5FF", magenta: "#FF2D95" } },
+          boxShadow: {
+            glowgreen: "0 8px 24px rgba(0,255,133,0.25)",
+            glowcyan: "0 8px 24px rgba(0,229,255,0.25)",
+            glowmagenta: "0 8px 24px rgba(255,45,149,0.25)",
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/workspace/styles.css" />
+</head>
+<body class="min-h-screen font-sans bg-[#0A0A0A]">
+  <div class="bg-orbs"></div>
+
+  <!-- Top Nav -->
+  <header class="fixed top-0 inset-x-0 z-40">
+    <div class="container-2xl px-4 py-3">
+      <div class="glass-panel glass-rounded flex items-center justify-between px-4 py-2">
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuBtn" class="md:hidden btn btn-ghost icon-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6H20M4 12H16M4 18H20" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <a href="/workspace/index.html" class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl glass-panel"></div>
+            <span class="text-white/90 text-lg font-semibold tracking-wide">Luma Library</span>
+          </a>
+        </div>
+        <div class="hidden md:flex items-center gap-3 flex-1 max-w-2xl mx-6">
+          <div class="relative flex-1">
+            <input class="w-full input-glow px-4 py-2.5 pl-10" placeholder="Search the library..." />
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="7" stroke="#9ca3af" stroke-width="1.5"/>
+              <path d="M20 20L17 17" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <a href="/workspace/upload.html" class="btn neon-green">Upload</a>
+          <a href="/workspace/browse.html" class="btn btn-ghost">Browse</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-ghost icon-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22s7-4 7-10V6l-7-3-7 3v6c0 6 7 10 7 10Z" stroke="#cbd5e1" stroke-width="1.5"/>
+            </svg>
+          </button>
+          <button class="btn btn-ghost icon-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 17h5l-1.4-1.4a2 2 0 0 1-.6-1.4V10a6 6 0 1 0-12 0v4c0 .5-.2 1-.6 1.4L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0h-6" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <a href="/workspace/my-library.html" class="hidden md:inline-flex btn btn-ghost">My Library</a>
+          <div class="w-9 h-9 rounded-xl glass-panel overflow-hidden">
+            <img src="https://i.pravatar.cc/64?img=8" alt="profile" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed z-30 inset-y-0 left-0 w-72 px-4 pt-20 md:pt-24 pb-6 hidden md:block">
+    <nav class="glass-panel glass-rounded h-full p-3 flex flex-col">
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/index.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>Home</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/browse.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>Browse</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/upload.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>Upload</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/my-library.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>My Library</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/admin.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>Admin</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5" href="/workspace/reader.html">
+        <span class="w-6 h-6 rounded-md glass-panel"></span>
+        <span>Reader</span>
+      </a>
+      <div class="mt-auto p-3">
+        <button id="openModalBtn" class="w-full btn neon-cyan">Open Modal</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="pt-24 md:pl-80 px-4">
+    <section class="container-2xl">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-white/95">Featured</h1>
+          <p class="text-white/60">AI-curated picks from the library</p>
+        </div>
+        <a href="/workspace/browse.html" class="btn btn-ghost">See all</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <!-- Card -->
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-40"></div>
+          <div class="p-4 space-y-2">
+            <h3 class="text-white/90 font-semibold"><a href="/workspace/detail.html" class="hover:underline">Neural Rendering in 2025</a></h3>
+            <p class="text-white/60 text-sm">by A. Researcher</p>
+            <div class="flex items-center gap-2">
+              <span class="tag" data-accent="cyan">Video</span>
+              <span class="tag" data-accent="green">AI</span>
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <a class="btn neon-cyan" href="/workspace/detail.html">View</a>
+              <button class="btn btn-ghost">Save</button>
+            </div>
+          </div>
+        </article>
+        <!-- Repeat sample cards -->
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-40"></div>
+          <div class="p-4 space-y-2">
+            <h3 class="text-white/90 font-semibold">Generative Textures Pack</h3>
+            <p class="text-white/60 text-sm">by Studio X</p>
+            <div class="flex items-center gap-2">
+              <span class="tag" data-accent="magenta">Asset</span>
+              <span class="tag" data-accent="cyan">3D</span>
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <a class="btn neon-cyan" href="/workspace/detail.html">View</a>
+              <button class="btn btn-ghost">Save</button>
+            </div>
+          </div>
+        </article>
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-40"></div>
+          <div class="p-4 space-y-2">
+            <h3 class="text-white/90 font-semibold">LLM Prompt Patterns</h3>
+            <p class="text-white/60 text-sm">by C. Designer</p>
+            <div class="flex items-center gap-2">
+              <span class="tag" data-accent="green">Guide</span>
+              <span class="tag" data-accent="magenta">UX</span>
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <a class="btn neon-cyan" href="/workspace/detail.html">View</a>
+              <button class="btn btn-ghost">Save</button>
+            </div>
+          </div>
+        </article>
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-40"></div>
+          <div class="p-4 space-y-2">
+            <h3 class="text-white/90 font-semibold">Diffusion Models Illustrated</h3>
+            <p class="text-white/60 text-sm">by K. Educator</p>
+            <div class="flex items-center gap-2">
+              <span class="tag" data-accent="cyan">Article</span>
+              <span class="tag" data-accent="green">Beginner</span>
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <a class="btn neon-cyan" href="/workspace/detail.html">View</a>
+              <button class="btn btn-ghost">Save</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container-2xl mt-10">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold text-white/95">Recommended for you</h2>
+          <p class="text-white/60">Based on your recent activity</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-ghost">List</button>
+          <button class="btn btn-ghost">Grid</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <!-- Sample smaller cards -->
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-32"></div>
+          <div class="p-4">
+            <h3 class="text-white/90 font-semibold">Realtime Mesh Capture</h3>
+            <p class="text-white/60 text-sm">by VFX Lab</p>
+          </div>
+        </article>
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-32"></div>
+          <div class="p-4">
+            <h3 class="text-white/90 font-semibold">Vision Transformers 101</h3>
+            <p class="text-white/60 text-sm">by ML School</p>
+          </div>
+        </article>
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-32"></div>
+          <div class="p-4">
+            <h3 class="text-white/90 font-semibold">Immersive 3D Scenes</h3>
+            <p class="text-white/60 text-sm">by XR Lab</p>
+          </div>
+        </article>
+        <article class="glass-panel glass-card overflow-hidden">
+          <div class="thumb h-32"></div>
+          <div class="p-4">
+            <h3 class="text-white/90 font-semibold">Prompt Engineering Tips</h3>
+            <p class="text-white/60 text-sm">by PromptHub</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pt-10 pb-8 md:pl-80 px-4">
+    <div class="container-2xl text-white/50 text-sm flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>© 2025 Luma Library</div>
+      <div class="flex items-center gap-4">
+        <a href="/workspace/browse.html" class="hover:text-white/80">Browse</a>
+        <a href="/workspace/upload.html" class="hover:text-white/80">Upload</a>
+        <a href="/workspace/admin.html" class="hover:text-white/80">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal glass-panel glass-card p-6 mx-4">
+      <h3 class="text-white/90 text-lg font-semibold mb-2">Glassmorphic Modal</h3>
+      <p class="text-white/70 mb-6">Use this for confirmations, quick actions, or previews.</p>
+      <div class="flex items-center justify-end gap-2">
+        <button id="closeModalBtn" class="btn btn-ghost">Cancel</button>
+        <button class="btn neon-magenta">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    if (mobileBtn) mobileBtn.addEventListener('click', () => sidebar.classList.toggle('hidden'));
+
+    const openModalBtn = document.getElementById('openModalBtn');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (openModalBtn) openModalBtn.addEventListener('click', () => modalBackdrop.classList.add('active'));
+    if (closeModalBtn) closeModalBtn.addEventListener('click', () => modalBackdrop.classList.remove('active'));
+    modalBackdrop?.addEventListener('click', (e) => { if (e.target === modalBackdrop) modalBackdrop.classList.remove('active'); });
+  </script>
+</body>
+</html>
